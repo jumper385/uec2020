@@ -139,7 +139,7 @@
 </style>
 
 <svelte:head>
-  <title>Contact Us</title>
+  <title>Contact Us 👋</title>
 </svelte:head>
 
 <h1 style='text-align:center;'>👋 to the Commitee</h1>

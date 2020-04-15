@@ -59,7 +59,7 @@
 </style>
 
 <svelte:head>
-    <title>Sponsorship</title>
+    <title>Sponsorship 🙌</title>
 </svelte:head>
 
 <div transition:fade="{{duration:120}}">

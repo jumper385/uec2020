@@ -52,7 +52,7 @@
 </style>
 
 <svelte:head>
-	<title>University Engineers Club</title>
+	<title> University Engineers Club 👷‍♂️</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </svelte:head>

@@ -23,7 +23,7 @@
 </style>
 
 <svelte:head>
-	<title>About</title>
+	<title>About 📖</title>
 </svelte:head>
 
 <div transition:fade="{{duration:120}}">
