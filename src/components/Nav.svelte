@@ -1,7 +1,7 @@
 <script>
 	export let segment;
 	import { fade, fly } from 'svelte/transition';
-	let banner = {message:'this is a simple banner - click the tick button to acknowlege this has been read'}
+	let banner = {}
 	let closed = false;
 </script>
 
@@ -95,11 +95,9 @@
 	</div>
 </nav>
 
-{#if banner}
 {#if !closed}
-<div transition:fade="{{duration:120}}" class='banner'>
-<p style='color:white; text-align:left;'>{banner.message}</p>
+<div transition:fade="{{duration:120}}" class='banner' style={banner.message ? null : 'display: None'}>
+<p style='color:white; text-align:left;'>{banner.message ? null : 'display: None'}</p>
 <span on:click={() => closed = true} class="banner-close material-icons"> check_box </span>
 </div>
-{/if}
 {/if}
