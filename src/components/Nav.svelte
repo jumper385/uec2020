@@ -11,6 +11,7 @@
 		justify-content: space-between;
 		padding: 0 32pt;
 		padding-top:12pt;
+		margin-bottom: 12pt;
 	}
 
 	nav .logo {
@@ -35,6 +36,21 @@
 	nav .link:visited {
 		color: rgb(0,100,150);
 	}
+
+	 @media (max-width: 500pt){
+		 nav {
+			 display:flex;
+			 flex-direction: column;
+			 align-items: center;
+			 height:auto;
+		 }
+
+		 nav .link-holder {
+			 margin-top:8pt;
+			 display: grid;
+			 grid-template-columns: 1fr 1fr 1fr 1fr;
+		 }
+	 }
 
 </style>
 

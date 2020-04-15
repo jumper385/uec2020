@@ -20,13 +20,6 @@
 </script>
 
 <style>
-    h1 {
-		font-weight: bold;
-		font-size:36pt;
-		margin:0;
-        margin-bottom:12pt;
-        text-align: center;
-    }
     .logo {
         height:32pt;
     }
@@ -38,6 +31,12 @@
         max-width:500pt;
         margin:0 auto;
         grid-row-gap: 12pt;
+    }
+
+    @media (max-width: 500pt) {
+        .sponsors {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 
     .announcement {
@@ -57,21 +56,14 @@
         text-decoration: underline;
     }
 
-    .announcement .extras {
-        font-family: 'Roboto Mono', monospace;
-        font-size: 8pt;
-        margin:0;
-        margin-top:6pt;
-        color:rgba(0,0,0,.6);
-    }
-
 </style>
 
 <svelte:head>
+    <title>Sponsorship</title>
 </svelte:head>
 
 <div in:fade>
-    <h1>Sponsorship</h1>
+    <h1 style="text-align:center; margin-bottom:24pt;">Sponsorship</h1>
 
     <div class='sponsors'>
     {#each sponsors as sponsor}
@@ -85,7 +77,7 @@
         <div class='announcement'>
         
             <p class='title'><span class='party'>{announcement.party}</span>: {announcement.title}</p>
-            <p class='extras'>DATE: {announcement.date}</p>
+            <p class='sub'>DATE: {announcement.date}</p>
             <p>{announcement.teaser}</p>
 
             <a href='/'>Read More...</a>

@@ -4,22 +4,22 @@
 
 <style>
 	div{
-		width:500pt;
+		max-width:500pt;
 		margin:0 auto;
+		box-sizing:border-box;
 	}
-	h1 {
-		font-weight: bold;
-		font-size:36pt;
-		margin:0;
-		margin-bottom:12pt;
-	}
-	.sub {
-		font-size:10pt;
-		margin:0;
-		color:rgba(0,0,0,.45);
-		font-weight: 700;
-		font-family: 'Roboto Mono', monospace;
-	}
+
+	@media (max-width: 700pt) {
+        div {
+			padding:10pt;
+		}
+
+		.sub {
+			margin-bottom:12pt !important;
+		}
+
+    }
+
 </style>
 
 <svelte:head>

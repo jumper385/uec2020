@@ -13,6 +13,13 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+
+	@media (max-width: 500pt) {
+        main{
+			padding:8pt;
+		}
+    }
+
 </style>
 
 <Nav {segment}/>
