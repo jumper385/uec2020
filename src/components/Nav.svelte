@@ -1,6 +1,13 @@
 <script>
 	export let segment;
+	import { fade, fly } from 'svelte/transition';
+	let banner = {message:'this is a simple banner - click the tick button to acknowlege this has been read'}
+	let closed = false;
 </script>
+
+<svelte:head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</svelte:head>
 
 <style>
 
@@ -37,6 +44,29 @@
 		color: rgb(0,100,150);
 	}
 
+	.banner {
+		background:#2ed573;
+		width:100vw;
+		text-align:center;
+		font-weight: 600;
+		font-size:8pt;
+		padding:0 16pt;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		box-sizing: border-box;
+	}
+
+	.banner-close{
+		border-radius:32pt;
+		font-size:10pt;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		color:white;
+		cursor: pointer;
+	}
+
 	 @media (max-width: 500pt){
 		 nav {
 			 display:flex;
@@ -63,5 +93,13 @@
 		<a class='link' href='sponsorship'>sponsorship</a>
 		<a class='link' href='contact'>contact</a>
 	</div>
-
 </nav>
+
+{#if banner}
+{#if !closed}
+<div transition:fade="{{duration:120}}" class='banner'>
+<p style='color:white; text-align:left;'>{banner.message}</p>
+<span on:click={() => closed = true} class="banner-close material-icons"> check_box </span>
+</div>
+{/if}
+{/if}
