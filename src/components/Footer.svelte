@@ -14,4 +14,5 @@
 <footer>
     <p> © University of Western Australia Engineers Club - {year}</p>
     <p>"<em>non loqui, sed facere"</em></p>
+    <p>Add us on <a href='https://www.facebook.com/universityengineersclub'>Facebook</a></p>
 </footer>

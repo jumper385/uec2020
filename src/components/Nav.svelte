@@ -91,7 +91,7 @@
 		<a class='link' href='.'>home</a>
 		<a class='link' href='about'>about</a>
 		<a class='link' href='sponsorship'>sponsorship</a>
-		<a class='link' href='contact'>contact</a>
+		<a class='link' href='contact'>contact us</a>
 	</div>
 </nav>
 
