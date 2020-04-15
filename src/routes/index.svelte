@@ -24,7 +24,6 @@
 		align-items:center;
 		box-sizing:border-box;
 		padding:24pt;
-		/* background:rgb(252,215,3); */
 		border-radius:8pt;
 	}
 

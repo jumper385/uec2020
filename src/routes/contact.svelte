@@ -1,4 +1,5 @@
 <script>
+    import { fade, fly } from 'svelte/transition';
   let positions = [
     {
       title: "president",
@@ -82,50 +83,58 @@
         width:100%;
         margin:0 auto;
     }
-
-    table {
-        margin: 0 auto;
-        text-align:center;
+    .table {
         max-width:500pt;
+        box-sizing: border-box;
+        margin:0 auto;
+    }
+    .table .table-row{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size:10pt;
+        width:100%;
+        box-sizing: border-box;
+        row-gap: 4pt;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+        padding:4pt 8pt;
+        border-radius:8pt 8pt 0 0;
+    }
+
+    .table-row:first-child {
+        background:#FCD703;
+    }
+
+    .table .table-heading {
+        font-weight:600;
+        box-sizing: border-box;
+        margin:0;
         width:100%;
     }
 
-    td, th {
-        border-bottom: 1px solid #ddd;
-        font-size:10pt;
+    .table .table-element{
+        font-weight:400;
+        text-transform: capitalize;
+        box-sizing: border-box;
         margin:0;
-        padding:2pt;
-        text-align: left;
-    }
-    
-    span {
-        margin:0;
-        height:100%;
         width:100%;
-        display:flex;
-        align-items: center;
     }
 
     .role, .name {
-        text-transform:capitalize;
+        text-align:left;
     }
 
-    .email{
-        margin:0;
-        display:flex;
-        align-items:center;
-        justify-content:flex-end;
-        height:100%;
-        width:100%;
+    .email {
+        text-align:right;
     }
 
-    tr:first-of-type:hover {
-        background:none;
-    }
-
-    tr:hover {
-        background:#F9D403;
-    }
+    @media (max-width: 500pt){
+		 .role {
+             display:none !important;
+         }
+         .table .table-row {
+             grid-template-columns: 1fr 1fr !important;
+         }
+	 }
 
 </style>
 
@@ -137,25 +146,28 @@
 
 <p style='margin-bottom:24pt;' class='message'>Feel free to say hi to us! We'd love to hear from you - any questions, complaints or even stories! As we're in direct contact with the faculty office, we speak on behalf of the student body. If there are any pressing concerns that you want sorted out, do let us know!</p>
 
-<table class='sortable'>
-  <tr>
-    <th class="table-heading role">Role</th>
-    <th class="table-heading name">Name</th>
-    <th class="table-heading email">Email</th>
-  </tr>
+<div class='table' transition:fade="{{duration:120}}">
 
-  {#each positions as position}
-    <tr>
+    <div class='table-row'>
+        <p class="table-heading role">Role</p>
+        <p class="table-heading name">Name</p>
+        <p class="table-heading email">Email</p>
+    </div>
 
-      <td class="table-element role"><span>{position.title}</span></td>
-      <td class="table-element name"><span>{position.name}</span></td>
-      <td class="table-element email" style="text-transform:lowercase">
-        <a href="mailto:{position.email}">
-          <code>{position.email}</code>
-        </a>
-      </td>
+    {#each positions as position}
+    <div class='table-row'>
+        <p class="table-element role">
+            <span>{position.title}</span>
+        </p>
 
-    </tr>
-  {/each}
+        <p class="table-element name"><span>{position.name}</span></p>
 
-</table>
+        <p class="table-element email" style="text-transform:lowercase">
+            <a href="mailto:{position.email}">
+            <code>{position.email}</code>
+            </a>
+        </p>
+    </div>
+    {/each}
+
+</div>
