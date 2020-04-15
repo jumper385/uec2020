@@ -55,7 +55,7 @@
 </style>
 
 <nav>
-	<img class='logo' src='logo.png' alt='uec logo'/>
+	<img class='logo' src='navlogo.png' alt='uec logo'/>
 
 	<div class='link-holder'>
 		<a class='link' href='.'>home</a>
