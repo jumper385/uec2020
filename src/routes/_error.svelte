@@ -27,10 +27,12 @@
 	<title>Error {status}! </title>
 </svelte:head>
 
-<h1 in:fade>Error: {status}</h1>
+<div transition:fade="{{duration:120}}">
+	<h1>Error: {status}</h1>
 
-<p in:fade>{error.message}</p>
+	<p>{error.message}</p>
 
-{#if dev && error.stack}
-	<pre in:fade>{error.stack}</pre>
-{/if}
+	{#if dev && error.stack}
+		<pre>{error.stack}</pre>
+	{/if}
+</div>

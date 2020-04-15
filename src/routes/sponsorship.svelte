@@ -62,7 +62,7 @@
     <title>Sponsorship</title>
 </svelte:head>
 
-<div in:fade>
+<div transition:fade="{{duration:120}}">
     <h1 style="text-align:center; margin-bottom:24pt;">Sponsorship</h1>
 
     <div class='sponsors'>

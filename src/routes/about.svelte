@@ -26,7 +26,7 @@
 	<title>About</title>
 </svelte:head>
 
-<div in:fade>
+<div transition:fade="{{duration:120}}">
 	<h1 style='text-align:center'>Our History</h1>
 
 	<p class='sub' style='text-align:center; margin-bottom:56pt'>Fond Memories from John Brearley</p>

@@ -58,7 +58,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </svelte:head>
 
-<div in:fade class='container'>
+<div transition:fade="{{duration:120}}" class='container'>
 
 	<div class='textHolder'>
 		<h1>
