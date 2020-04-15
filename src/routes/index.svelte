@@ -52,7 +52,7 @@
 </style>
 
 <svelte:head>
-	<title> University Engineers Club 👷‍♂️</title>
+	<title> University Engineers' Club 👷‍♂️</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </svelte:head>
@@ -62,7 +62,7 @@
 	<div class='textHolder'>
 		<h1>
 
-		The <mark style='background:#27348b; color:white'>University of Western Australia</mark> <mark style='background:rgb(252,215,3)'>Engineers Club</mark>
+		The <mark style='background:#27348b; color:white'>University of Western Australia</mark> <mark style='background:rgb(252,215,3)'>Engineers' Club</mark>
 		</h1>
 
 		<p class='sub'>8th September 1921 - Present</p>
