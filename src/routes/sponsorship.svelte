@@ -59,11 +59,11 @@
 </style>
 
 <svelte:head>
-    <title>Sponsorship 🙌</title>
+    <title>Sponsors 🙌</title>
 </svelte:head>
 
 <div transition:fade="{{duration:120}}">
-    <h1 style="text-align:center; margin-bottom:24pt;">Sponsorship</h1>
+    <h1 style="text-align:center; margin-bottom:24pt;">Sponsors</h1>
 
     <div class='sponsors'>
     {#each sponsors as sponsor}
