@@ -90,7 +90,7 @@
 	<div class='link-holder'>
 		<a class='link' href='.'>home</a>
 		<a class='link' href='about'>about</a>
-		<a class='link' href='sponsorship'>sponsorship</a>
+		<a class='link' href='sponsors'>sponsors</a>
 		<a class='link' href='contact'>contact</a>
 	</div>
 </nav>
