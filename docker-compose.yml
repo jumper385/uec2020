@@ -8,7 +8,6 @@ services:
             - "3000"
         volumes:
             - "./web:/app"
-            - "./volume1:/app"
         restart: unless-stopped
 
     proxy:
@@ -16,9 +15,16 @@ services:
         ports:
             - '80:80'
         volumes:
-            - "volume2:/etc/nginx/conf.d"
+            - "proxy:/etc/nginx/conf.d"
         restart: unless-stopped
 
+    db:
+        image: mongo
+        ports: 
+            - "27017:27017"
+        volumes:
+            - "mongodb:/data/db"
+
 volumes:
-    volume1: 
-    volume2: 
+    proxy: 
+    mongodb: 
