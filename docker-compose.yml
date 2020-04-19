@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+    web:
+        build: ./web
+        expose: 
+            - "3000"
+        volumes:
+            - "./web:/app"
+            - "./volume1:/app"
+        restart: unless-stopped
+
+    proxy:
+        build: ./nginx
+        ports:
+            - '80:80'
+        volumes:
+            - "volume2:/etc/nginx/conf.d"
+        restart: unless-stopped
+
+volumes:
+    volume1: 
+    volume2: 
