@@ -3,7 +3,6 @@ import * as db from '../mongoosehelpers';
 
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
-
 	try {
 		let documents = await db.queryCollection(Announcement, req.body);
 
@@ -11,7 +10,7 @@ export const get = async (req, res) => {
 		res.json({
 			message: 'Successful GET request',
 			documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
-			documents: { ...documents }
+			documents:  arrayObject 
 		});
 	} catch (err) {
 		res.json({

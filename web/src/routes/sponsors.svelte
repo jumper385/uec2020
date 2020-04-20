@@ -1,88 +1,99 @@
+<script context="module">
+  export const preload = async (page, session) => {
+    const res = await axios.get("http://digism.xyz:5000/apiv1");
+    return { res };
+  };
+</script>
+
 <script>
+  export let res;
 
-    import { fade, fly } from 'svelte/transition';
+  let announcements = Object.keys(res.data.documents).map(key => {
+      return res.data.documents[`${key}`]
+  })
 
-    let sponsors = [
-        {src:'austral.jpg',alt:'austral engineering'},
-        {src:'ca.jpg',alt:'chartered accountants'},
-        {src:'conoco.png',alt:'conocophillips'},
-        {src:'gpa.jpg',alt:'gpa engineering'},
-        {src:'wood&grieve.png',alt:'wood & grieve'},
-        {src:'yara.png',alt:'yara'},
-    ]
+  import { fade, fly } from "svelte/transition";
+  import { onMount } from "svelte";
+  import axios from "axios";
 
-    let announcements = [
-        {id:'123a4', title:'2021 Graduate Recruitment Programme', date:'24th Febuary 2020', teaser:'This is some small teaser text. It\'s interesting ot see this kind of description 😇', party:'Conoco Phillips'},
-        {id:'123a4', title:'Vacation Workers 🎓', date:'12th Febuary 2020', teaser:'Rio is looking to recruit you! if you think you have what it takes apply at http://riotinto.org/recuitment/vacation', party:'Rio Tinto'},
-        {id:'123a4', title:'A sample announcement', date:'24th Febuary 2020', teaser:'this is a small peice of text!', party:'Conoco Phillips'},
-    ]
+  let sponsors = [
+    { src: "austral.jpg", alt: "austral engineering" },
+    { src: "ca.jpg", alt: "chartered accountants" },
+    { src: "conoco.png", alt: "conocophillips" },
+    { src: "gpa.jpg", alt: "gpa engineering" },
+    { src: "wood&grieve.png", alt: "wood & grieve" },
+    { src: "yara.png", alt: "yara" }
+  ];
 
 </script>
 
 <style>
-    .logo {
-        height:32pt;
-    }
+  .logo {
+    height: 32pt;
+  }
+  .sponsors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+    max-width: 500pt;
+    margin: 0 auto;
+    grid-row-gap: 12pt;
+  }
+
+  @media (max-width: 500pt) {
     .sponsors {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-items: center;
-        width:100%;
-        max-width:500pt;
-        margin:0 auto;
-        grid-row-gap: 12pt;
+      grid-template-columns: 1fr 1fr;
     }
+  }
 
-    @media (max-width: 500pt) {
-        .sponsors {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
+  .announcement {
+    width: 100%;
+    max-width: 500pt;
+    margin: 24pt auto;
+  }
 
-    .announcement {
-        width:100%;
-        max-width:500pt;
-        margin:24pt auto;
-    }
+  .announcement .title {
+    margin: 0;
+  }
 
-    .announcement .title {
-        margin:0;
-    }
-
-    .announcement .title .party {
-        text-transform: none;
-        font-weight:bold;
-        font-size:12pt;
-        text-decoration: underline;
-    }
-
+  .announcement .title .party {
+    text-transform: none;
+    font-weight: bold;
+    font-size: 12pt;
+    text-decoration: underline;
+  }
 </style>
 
 <svelte:head>
-    <title>Sponsors 🙌</title>
+  <title>Sponsors 🙌</title>
 </svelte:head>
 
-<div transition:fade="{{duration:120}}">
-    <h1 style="text-align:center; margin-bottom:24pt;">Sponsors</h1>
+<div transition:fade={{ duration: 120 }}>
+  <h1 style="text-align:center; margin-bottom:24pt;">Sponsors</h1>
 
-    <div class='sponsors'>
+  <div class="sponsors">
     {#each sponsors as sponsor}
-        <img class='logo' src='logos/{sponsor.src}' alt={sponsor.alt}/>
+      <img class="logo" src="logos/{sponsor.src}" alt={sponsor.alt} />
     {/each}
+  </div>
+  <br />
+  <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
+
+  {#each announcements as announcement}
+
+    <div class="announcement">
+
+      <p class="title">
+        <span class="party">{announcement.author}</span>
+        : {announcement.title}
+      </p>
+      <p class="sub">{announcement.timestamp}</p>
+      <p>{announcement.content}</p>
+
+      <a href="/">Read More...</a>
+
     </div>
-    <br>
-    <h2 style='text-align:center; margin-top:24pt;'>Announcements</h2>
-
-    {#each announcements as announcement}
-        <div class='announcement'>
-        
-            <p class='title'><span class='party'>{announcement.party}</span>: {announcement.title}</p>
-            <p class='sub'>DATE: {announcement.date}</p>
-            <p>{announcement.teaser}</p>
-
-            <a href='/'>Read More...</a>
-
-        </div>
-    {/each}
+  {/each}
 
 </div>
