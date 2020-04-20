@@ -3,20 +3,17 @@ import * as db from '../mongoosehelpers';
 
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
-	try {
-		let documents = await db.queryCollection(Announcement, req.body);
 
-		res.setHeader('Content-Type', 'application/json');
-		res.json({
-			message: 'Successful GET request',
-			documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
-			documents:  arrayObject 
-		});
-	} catch (err) {
-		res.json({
-			error: err
-		});
-	};
+	console.log('you tried...')
+
+	let documents = await db.queryCollection(Announcement, req.body);
+
+	res.setHeader('Content-Type', 'application/json');
+	res.json({
+		message: 'Successful GET request',
+		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
+		documents: documents
+	});
 };
 
 export const post = async (req, res) => {

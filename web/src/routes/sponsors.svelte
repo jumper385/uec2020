@@ -1,6 +1,7 @@
 <script context="module">
+  // Preloads with http request to the sponsor announcements
   export const preload = async (page, session) => {
-    const res = await axios.get("http://digism.xyz:5000/apiv1");
+	const res = await axios.get(`http://localhost/apiv1`);
     return { res };
   };
 </script>
@@ -9,8 +10,8 @@
   export let res;
 
   let announcements = Object.keys(res.data.documents).map(key => {
-      return res.data.documents[`${key}`]
-  })
+    return res.data.documents[`${key}`];
+  });
 
   import { fade, fly } from "svelte/transition";
   import { onMount } from "svelte";
@@ -24,7 +25,6 @@
     { src: "wood&grieve.png", alt: "wood & grieve" },
     { src: "yara.png", alt: "yara" }
   ];
-
 </script>
 
 <style>
@@ -81,7 +81,6 @@
   <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
 
   {#each announcements as announcement}
-
     <div class="announcement">
 
       <p class="title">
