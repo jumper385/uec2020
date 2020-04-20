@@ -1,7 +1,7 @@
 <script context="module">
   // Preloads with http request to the sponsor announcements
   export const preload = async (page, session) => {
-	const res = await axios.get(`http://localhost/apiv1`);
+	const res = await axios.get(`http://web:3000/apiv1`);
     return { res };
   };
 </script>
@@ -71,7 +71,6 @@
 
 <div transition:fade={{ duration: 120 }}>
   <h1 style="text-align:center; margin-bottom:24pt;">Sponsors</h1>
-
   <div class="sponsors">
     {#each sponsors as sponsor}
       <img class="logo" src="logos/{sponsor.src}" alt={sponsor.alt} />
