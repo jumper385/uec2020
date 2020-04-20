@@ -8,8 +8,8 @@ export const queryCollection = async (schema, query) => {
 
 export const postCollection = async (schema, body) => {
 	// posts a new document
-	if(body.length > 1) return await schema.insertOne(body);
-	if(body.length < 1) return await schema.insertMany(body);
+	if(body.length == undefined) return await schema.create(body);
+	if(body.length > 1) return await schema.insertMany(body);
 };
 
 export const deleteCollection = async (schema, query) => {

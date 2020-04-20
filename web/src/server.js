@@ -5,7 +5,11 @@ import compression from 'compression';
 import * as sapper from '@sapper/server';
 import * as mongoose from 'mongoose';
 
-mongoose.connect('mongodb://db:27017/test', {
+const { PORT, NODE_ENV } = process.env;
+const dev = NODE_ENV === 'development';
+const app = express();
+
+mongoose.connect(dev ? 'mongodb://localhost:27017' : 'mongodb://db:27017/test', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, (err) => {
@@ -15,10 +19,6 @@ mongoose.connect('mongodb://db:27017/test', {
 		console.log('successful db connection');
 	}
 });
-
-const { PORT, NODE_ENV } = process.env;
-const dev = NODE_ENV === 'development';
-const app = express();
 
 app.use(compression({ threshold: 0 }));
 app.use(sirv('static', { dev }));

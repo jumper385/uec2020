@@ -4,8 +4,6 @@ import * as db from '../mongoosehelpers';
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	console.log('connected to apiv1 home')
-
 	try {
 		let documents = await db.queryCollection(Announcement, req.body);
 
@@ -19,17 +17,16 @@ export const get = async (req, res) => {
 		res.json({
 			error: err
 		});
-	}
+	};
 };
 
 export const post = async (req, res) => {
 	// TODO: Add auth protection
 	let document = await db.postCollection(Announcement, req.body);
-	console.log(document);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({
 		message: 'Successful POST request',
-		documentsSubmitted: `${document.length} ${document.length > 1 ? 'documents' : 'document'} was submitted`, 
+		documentsSubmitted: document ? document.length || 1 : 0,
 		documents: {
 			document
 		}
@@ -40,7 +37,6 @@ export const put = async (req, res) => {
 	// TODO: Add auth protection
 	let { query, delta } = req.body;
 	let document = await db.editCollection(Announcement, query, delta);
-	console.log(document);
 	res.setHeader('Content-Type', 'application/json');
 	res.json(document);
 };
