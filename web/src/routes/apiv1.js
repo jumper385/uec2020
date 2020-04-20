@@ -1,17 +1,25 @@
 import { Announcement } from '../dbschemas/announcement';
-import * as db from '../mongoosehelpers'
+import * as db from '../mongoosehelpers';
 
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	let documents = await db.queryCollection(Announcement, req.body);
+	console.log('connected to apiv1 home')
 
-	res.setHeader('Content-Type', 'application/json');
-	res.json({
-		message: 'Successful GET request',
-		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
-		documents: { ...documents }
-	});
+	try {
+		let documents = await db.queryCollection(Announcement, req.body);
+
+		res.setHeader('Content-Type', 'application/json');
+		res.json({
+			message: 'Successful GET request',
+			documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
+			documents: { ...documents }
+		});
+	} catch (err) {
+		res.json({
+			error: err
+		});
+	}
 };
 
 export const post = async (req, res) => {

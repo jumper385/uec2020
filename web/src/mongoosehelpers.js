@@ -1,11 +1,5 @@
 import * as mongoose from 'mongoose';
 
-// Connect to the mongoose database before anything else!!!
-mongoose.connect('mongodb://localhost:27017/test', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
-
 // DATABASE INTERFACE FUNCIONS
 export const queryCollection = async (schema, query) => {
 	// Queries the schema and finds the data

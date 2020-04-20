@@ -9,6 +9,8 @@ services:
         volumes:
             - "./web:/app"
         restart: unless-stopped
+        networks:
+            - default
 
     proxy:
         build: ./nginx
@@ -17,14 +19,22 @@ services:
         volumes:
             - "proxy:/etc/nginx/conf.d"
         restart: unless-stopped
+        networks:
+            - default
 
     db:
         image: mongo
-        ports: 
-            - "27017:27017"
+        expose: 
+            - "27017"
         volumes:
             - "mongodb:/data/db"
+        networks:
+            - default
 
 volumes:
     proxy: 
     mongodb: 
+
+networks:
+    default:
+        driver: bridge
