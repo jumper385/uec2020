@@ -4,7 +4,7 @@ import * as db from '../mongoosehelpers';
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	console.log('you tried...')
+	console.log('yOHH! A get request!')
 
 	let documents = await db.queryCollection(Announcement, req.body);
 

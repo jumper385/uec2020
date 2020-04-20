@@ -1,21 +1,22 @@
 <script context="module">
-  // Preloads with http request to the sponsor announcements
-  export const preload = async (page, session) => {
-	const res = await axios.get(`http://web:3000/apiv1`);
-    return { res };
-  };
+
+import axios from 'axios'
+
+export const preload = async(page) => {
+  const {data} = await axios.get('http://web:3000/apiv1');
+  return {res:data};
+}
+
 </script>
 
 <script>
-  export let res;
 
-  let announcements = Object.keys(res.data.documents).map(key => {
-    return res.data.documents[`${key}`];
-  });
+  export let res
+  console.log(res.documents)
 
   import { fade, fly } from "svelte/transition";
   import { onMount } from "svelte";
-  import axios from "axios";
+  import FetchBoi from '../components/FetchBoi.svelte'
 
   let sponsors = [
     { src: "austral.jpg", alt: "austral engineering" },
@@ -79,7 +80,7 @@
   <br />
   <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
 
-  {#each announcements as announcement}
+  {#each res.documents as announcement}
     <div class="announcement">
 
       <p class="title">
@@ -93,5 +94,7 @@
 
     </div>
   {/each}
+
+  <FetchBoi />
 
 </div>
