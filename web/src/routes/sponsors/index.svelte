@@ -86,8 +86,6 @@
       <p class="sub">{announcement.timestamp}</p>
       <p>{announcement.content}</p>
 
-      <a href="/">Read More...</a>
-
     </div>
   {/each}
 
