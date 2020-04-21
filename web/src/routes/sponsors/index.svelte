@@ -40,7 +40,7 @@
 
   @media (max-width: 500pt) {
     .sponsors {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
@@ -52,12 +52,12 @@
 
   .announcement .title {
     margin: 0;
+	font-size: 1em;
   }
 
   .announcement .title .party {
     text-transform: none;
     font-weight: bold;
-    font-size: 12pt;
     text-decoration: underline;
   }
 </style>
@@ -76,17 +76,21 @@
   <br />
   <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
 
-  {#each posts as announcement}
-    <div class="announcement">
+  {#if posts}
+    {#each posts as announcement}
+      <div class="announcement">
 
-      <p class="title">
-        <span class="party">{announcement.author}</span>
-        : {announcement.title}
-      </p>
-      <p class="sub">{announcement.timestamp}</p>
-      <p>{announcement.content}</p>
+        <p class="title">
+          <span class="party">{announcement.author}</span>
+          : {announcement.title}
+        </p>
+        <p class="sub">{announcement.timestamp}</p>
+        <p>{announcement.content}</p>
 
-    </div>
-  {/each}
+      </div>
+    {/each}
+  {:else}
+    <p style="text-align:center">No posts just yet...</p>
+  {/if}
 
 </div>
