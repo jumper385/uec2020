@@ -1,5 +1,5 @@
 import { Announcement } from '../dbschemas/announcement';
-import * as db from '../mongoosehelpers';
+import * as db from './mongoosehelpers';
 
 // HTTP FUNCTIONS
 export const get = async (req, res) => {

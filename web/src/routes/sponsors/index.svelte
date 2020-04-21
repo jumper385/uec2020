@@ -1,22 +1,18 @@
 <script context="module">
-
-import axios from 'axios'
-
-export const preload = async(page) => {
-  const {data} = await axios.get('http://web:3000/apiv1');
-  return {res:data};
-}
-
+  export function preload({ params, query }) {
+    return this.fetch(`sponsors.json`)
+      .then(r => r.json())
+      .then(posts => {
+        return { posts };
+      });
+  }
 </script>
 
 <script>
-
-  export let res
-  console.log(res.documents)
+  export let posts;
 
   import { fade, fly } from "svelte/transition";
   import { onMount } from "svelte";
-  import FetchBoi from '../components/FetchBoi.svelte'
 
   let sponsors = [
     { src: "austral.jpg", alt: "austral engineering" },
@@ -80,7 +76,7 @@ export const preload = async(page) => {
   <br />
   <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
 
-  {#each res.documents as announcement}
+  {#each posts as announcement}
     <div class="announcement">
 
       <p class="title">
@@ -94,7 +90,5 @@ export const preload = async(page) => {
 
     </div>
   {/each}
-
-  <FetchBoi />
 
 </div>
