@@ -7,7 +7,7 @@ services:
         expose: 
             - "3000"
         volumes:
-            - "./web:/app"
+            - "./web/src:/app/src"
         restart: unless-stopped
         networks:
             - default
