@@ -87,6 +87,7 @@
         <p class="sub">{announcement.timestamp}</p>
         <p>{announcement.content}</p>
 
+        <a href='/sponsors/{announcement._id}'>Read More</a>
       </div>
     {/each}
   {:else}

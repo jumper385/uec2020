@@ -1,10 +1,10 @@
-import * as db from '../mongoosehelpers'
+import * as db from '../mongoosehelpers';
 import { Contact } from '../../dbschemas/contactschemas.js';
 
 const contents = async(collection, query) => {
-	const response = await db.queryCollection(collection, query)
-	return JSON.stringify(response)
-}
+	const response = await db.queryCollection(collection, query);
+	return JSON.stringify(response);
+};
 
 export async function get(req, res) {
 
