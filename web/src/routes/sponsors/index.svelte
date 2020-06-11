@@ -85,7 +85,7 @@
           : {announcement.title}
         </p>
         <p class="sub">{announcement.timestamp}</p>
-        <p>{announcement.content}</p>
+        <p>{announcement.summary}</p>
 
         <a href='sponsors/{announcement._id}'>Read More</a>
 
