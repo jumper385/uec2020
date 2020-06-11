@@ -17,7 +17,10 @@
 </script>
 
 <style>
-
+	:global(.markdown img){
+		width:100%;
+		height:auto;
+	}
 </style>
 
 <svelte:head>
@@ -26,6 +29,6 @@
 
 <h1>{post.title}</h1>
 
-<div class='content'>
+<div class='markdown'>
 	{@html marked(post.content)}
 </div>

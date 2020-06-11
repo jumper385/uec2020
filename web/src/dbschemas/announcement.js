@@ -5,6 +5,7 @@ const announcementSchema = Schema({
 	content: { type: String },
 	author: { type: String, required: true },
 	timestamp: { type: Date, default: new Date(), required:true },
+	summary: {type: String },
 });
 
 export const Announcement = model('announcement', announcementSchema);

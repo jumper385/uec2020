@@ -85,7 +85,7 @@
           : {announcement.title}
         </p>
         <p class="sub">{announcement.timestamp}</p>
-        <p>{announcement.summary}</p>
+        <p>{announcement.summary || 'A summary is not available...'}</p>
 
         <a href='sponsors/{announcement._id}'>Read More</a>
 
