@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-mongoose.connect(dev ? 'mongodb://db:27017' : 'mongodb://db:27017/test', {
+mongoose.connect(!dev ? 'mongodb://db:27017' : 'mongodb://localhost:27017/test', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, (err) => {

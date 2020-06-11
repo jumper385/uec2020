@@ -1,5 +1,4 @@
 <script>
-	export let segment;
 	import { fade, fly } from 'svelte/transition';
 	let banner = {}
 	let closed = false;

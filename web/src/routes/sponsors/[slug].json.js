@@ -1,28 +1,23 @@
-import posts from './_posts.js';
+import * as db from '../mongoosehelpers';
+import { Announcement } from '../../dbschemas/announcement.js';
 
-const lookup = new Map();
-posts.forEach(post => {
-	lookup.set(post.slug, JSON.stringify(post));
-});
-
-export function get(req, res, next) {
-	// the `slug` parameter is available because
-	// this file is called [slug].json.js
+export async function get(req, res) {
 	const { slug } = req.params;
-
-	if (lookup.has(slug)) {
+	const posts = await db.queryCollection(Announcement, {_id:slug});
+	
+	if (posts[0]) {
 		res.writeHead(200, {
 			'Content-Type': 'application/json'
 		});
 
-		res.end(lookup.get(slug));
+		res.end(JSON.stringify(posts[0]));
 	} else {
 		res.writeHead(404, {
 			'Content-Type': 'application/json'
 		});
 
 		res.end(JSON.stringify({
-			message: `Not found`
+			message: 'Not found'
 		}));
 	}
 }

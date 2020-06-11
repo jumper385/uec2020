@@ -1,8 +1,6 @@
 <script context="module">
 	export async function preload({ params, query }) {
-		// the `slug` parameter is available because
-		// this file is called [slug].svelte
-		const res = await this.fetch(`blog/${params.slu_id}.json`);
+		const res = await this.fetch(`sponsors/${params.slug}.json`);
 		const data = await res.json();
 
 		if (res.status === 200) {
@@ -18,14 +16,6 @@
 </script>
 
 <style>
-	/*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
 	.content :global(h2) {
 		font-size: 1.4em;
 		font-weight: 500;

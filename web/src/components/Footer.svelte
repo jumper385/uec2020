@@ -1,5 +1,4 @@
 <script>
-    export let segment;
     let dt = new Date();
     $: year = dt.getFullYear()
 </script>
