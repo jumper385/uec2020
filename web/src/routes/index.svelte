@@ -20,7 +20,8 @@
 
 	.container {
 		height:80vh;
-		display:flex;
+		display:grid;
+		grid-template-columns: 1fr 1fr;
 		align-items:center;
 		box-sizing:border-box;
 		padding:24pt;
@@ -38,15 +39,20 @@
 
 		.container {
 			padding:8pt;
+			grid-template-columns: 1fr 1fr;
 		}
 
+		.displayImage {
+			display:none
+		}
 	}
 	
 	@media (max-height: 800px) {
         .container{
 			align-items: center;
+			grid-template-columns: 1fr;
 		}
-    }
+	}
 
 
 </style>

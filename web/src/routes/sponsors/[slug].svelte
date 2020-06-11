@@ -16,19 +16,13 @@
 	import marked from 'marked';
 </script>
 
-<style>
-	:global(.markdown img){
-		width:100%;
-		height:auto;
-	}
-</style>
-
 <svelte:head>
 	<title>{post.title}</title>
+	<link rel='stylesheet' href='github-markdown.css'>
 </svelte:head>
 
 <h1>{post.title}</h1>
 
-<div class='markdown'>
+<div class='markdown-body'>
 	{@html marked(post.content)}
 </div>

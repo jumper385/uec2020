@@ -57,8 +57,7 @@
 
   .announcement .title .party {
     text-transform: none;
-    font-weight: bold;
-    text-decoration: underline;
+    color: rgba(0,0,0,.24);
   }
 </style>
 
@@ -73,21 +72,17 @@
       <img class="logo" src="logos/{sponsor.src}" alt={sponsor.alt} />
     {/each}
   </div>
-  <br />
   <h2 style="text-align:center; margin-top:24pt;">Announcements</h2>
 
   {#if posts}
     {#each posts as announcement}
       <div class="announcement">
 
-        <p class="title">
-          <span class="party">{announcement.author}</span>
-          : {announcement.title}
-        </p>
-        <p class="sub">{announcement.timestamp}</p>
+        <h3 style='font-weight:bold' class="title">
+          {announcement.title} <span class="party">by {announcement.author}</span>
+        </h3>
         <p>{announcement.summary || 'A summary is not available...'}</p>
-
-        <a href='sponsors/{announcement._id}'>Read More</a>
+        <a href='sponsors/{announcement._id}'>Read More...</a>
 
       </div>
     {/each}
