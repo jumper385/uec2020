@@ -114,8 +114,8 @@
         <p class='content'>{announcement.summary || 'A summary is not available...'}</p>
 
         <div>
-          <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company}</p>
-          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.content ? `sponsor/${announcement.shortid}` : announcement.link || null}'>{announcement.content ? `sponsor/${announcement.shortid}` : announcement.link || 'Link Unavailable...'}</a></p>
+          <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company || 'Company Unvavailable'}</p>
+          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.content ? `sponsors/${announcement.shortid}` : announcement.link || null}'>{announcement.content ? `sponsors/${announcement.shortid}` : announcement.link || 'Link Unavailable...'}</a></p>
         </div>
         
         <!-- <a href='sponsors/{announcement._id}'>Read More...</a> -->
