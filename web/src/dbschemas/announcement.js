@@ -1,5 +1,4 @@
 import { Schema, model} from 'mongoose';
-import shortid from 'shortid'
 
 const announcementSchema = Schema({
 	title: { type: String, required: true },
@@ -9,7 +8,6 @@ const announcementSchema = Schema({
 	summary: {type: String },
 	company: {type: String},
 	link: {type: String},
-	shortid: {type: String, required:true, default: shortid.generate()}
 });
 
 export const Announcement = model('announcement', announcementSchema);
