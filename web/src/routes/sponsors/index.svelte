@@ -114,7 +114,7 @@
 
         <div>
           <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company}</p>
-          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.link}'>{announcement.link}</a></p>
+          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.link || `sponsor/${announcement._id}`}'>{announcement.link || `sponsor/${announcement._id}`}</a></p>
         </div>
         
         <!-- <a href='sponsors/{announcement._id}'>Read More...</a> -->
