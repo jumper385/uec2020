@@ -6,6 +6,8 @@ const announcementSchema = Schema({
 	author: { type: String, required: true },
 	timestamp: { type: Date, default: new Date(), required:true },
 	summary: {type: String },
+	company: {type: String},
+	link: {type: String},
 });
 
 export const Announcement = model('announcement', announcementSchema);
