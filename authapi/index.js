@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const User = require('./mongo/UserSchema');
 const Database = require('./mongo/dbinteractions');
 
-const saltrounds = 10;
+const saltrounds = 30;
 const sampleHash = bcrypt.hash('st18chenh', saltrounds);
 const sampleUser = 'chenry';
 const app = express();	
@@ -22,20 +22,20 @@ app.get('/',(req,res) => {
 
 app.post('/profile', async (req,res) => {
 	try{
-		if (req.body.password && req.body.username) {
-			const pwdhash = bcrypt.hash(req.body.password, saltrounds);
-			const newProfile = User.create({
-				...req.body,
-				password: await pwdhash
-			});
-			
+		if(!req.body.password) throw Error('password is missing');
+		const findUser = User.find({$or:[
+			{username:req.body.username},{email:req.body.email}
+		]});
+		const usersearch = await findUser;
+		if (usersearch.length == 0){
+			const newProfile = User.create({...req.body, password: await bcrypt.hash(req.body.password, saltrounds)});
 			res.json(await newProfile);
 		} else {
-			res.status(400).json({message: 'missing key elements of profile'});
+			throw Error('User already exists');
 		}
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({error:'error',errmsg:err});
+		res.status(500).json({error:true,message:err.message});
 	}
 });
 
