@@ -3,15 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
 
 const User = require('./mongo/UserSchema');
 const db = require('./mongo/mongoosehelpers');
 
 const saltrounds = 10;
-const sampleHash = bcrypt.hash('st18chenh', saltrounds);
-const sampleUser = 'chenry';
 const app = express();	
+const jwtkey = process.env.NODE_ENV === 'development' ? 'secretkey' : process.env.JWT_KEY;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -52,10 +50,20 @@ app.post('/login', async (req,res) => {
 		
 		if (comparepwd) {
 			let profile = userquery.map(({firstname, lastname, username, email}) => ({firstname, lastname, username, email}));
-			let token = jwt.sign({...profile[0]}, process.env.NODE_ENV === 'development' ? 'secretkey' : process.env.JWT_KEY);
-			res.status(200).json({message:'successful login', jwt:token});
+			let token = jwt.sign({...profile[0]}, jwtkey, {expiresIn:'24h'});
+			res.status(200).json({message:'successful login', jwt:await token});
 		}
 
+	} catch (err) {
+		res.status(500).json({error:true, message:err.message});
+	}
+});
+
+app.get('/verify', async (req,res) => {
+	try{
+		let token = req.headers.authorization.split(' ')[1];
+		let verify = await jwt.verify(token, jwtkey);
+		res.status(200).json(verify);
 	} catch (err) {
 		res.status(500).json({error:true, message:err.message});
 	}
