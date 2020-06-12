@@ -11,6 +11,14 @@ services:
         restart: unless-stopped
         networks:
             - default
+    
+    auth:
+        build: ./authapi
+        volumes:
+            - "./authapi:/app"
+        restart: unless-stopped
+        networks: 
+            - default
 
     proxy:
         build: ./nginx
