@@ -63,6 +63,7 @@
     font-weight:bold;
     color:rgba(0,0,0,.36);
   }
+  
 
   .announcement .content {
     
@@ -107,14 +108,14 @@
 
         <div class='primary'>
           <h3 style='font-weight:bold' class="title">{announcement.title}</h3>
-          <p class='handle'>@ {announcement.author}</p>
+          <p class='handle'>@{announcement.author}</p>
         </div>
 
         <p class='content'>{announcement.summary || 'A summary is not available...'}</p>
 
         <div>
           <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company}</p>
-          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.link || `sponsor/${announcement._id}`}'>{announcement.link || `sponsor/${announcement._id}`}</a></p>
+          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.content ? `sponsor/${announcement.shortid}` : announcement.link || null}'>{announcement.content ? `sponsor/${announcement.shortid}` : announcement.link || 'Link Unavailable...'}</a></p>
         </div>
         
         <!-- <a href='sponsors/{announcement._id}'>Read More...</a> -->
