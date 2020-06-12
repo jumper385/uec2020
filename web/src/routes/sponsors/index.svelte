@@ -48,17 +48,45 @@
     width: 100%;
     max-width: 500pt;
     margin: 24pt auto;
+    padding: 0 12pt;
+    box-sizing: border-box;
+    border-left: solid 3px #fcd703;
   }
 
-  .announcement .title {
-    margin: 0;
-	font-size: 1em;
+  .announcement .primary .title {
+    margin:0;
   }
 
-  .announcement .title .party {
-    text-transform: none;
-    color: rgba(0,0,0,.24);
+  .announcement .primary .handle {
+    margin:0;
+    font-size: 0.8em;
+    font-weight:bold;
+    color:rgba(0,0,0,.36);
   }
+  
+
+  .announcement .content {
+    
+  }
+
+  .announcement .metainfo {
+    margin:0;
+    font-size:0.8em;
+    display: flex;
+    align-items: center;
+    color:rgba(0,0,0,.36);
+    font-weight: bold;
+  }
+
+  .announcement .metainfo span{
+    font-size:1.5em;
+    color:rgba(0,0,0,.36);
+    margin-right: 6pt;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  
 </style>
 
 <svelte:head>
@@ -78,12 +106,19 @@
     {#each posts as announcement}
       <div class="announcement">
 
-        <h3 style='font-weight:bold' class="title">
-          {announcement.title} <span class="party">by {announcement.author}</span>
-        </h3>
-        <p>{announcement.summary || 'A summary is not available...'}</p>
-        <a href='sponsors/{announcement._id}'>Read More...</a>
+        <div class='primary'>
+          <h3 style='font-weight:bold' class="title">{announcement.title}</h3>
+          <p class='handle'>@{announcement.author}</p>
+        </div>
 
+        <p class='content'>{announcement.summary || 'A summary is not available...'}</p>
+
+        <div>
+          <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company || 'Company Unvavailable'}</p>
+          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.content ? `sponsors/${announcement._id}` : announcement.link || null}'>{announcement.content ? `sponsors/${announcement._id}` : announcement.link || 'Link Unavailable...'}</a></p>
+        </div>
+        
+        <!-- <a href='sponsors/{announcement._id}'>Read More...</a> -->
       </div>
     {/each}
   {:else}
