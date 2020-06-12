@@ -6,17 +6,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 const User = require('./mongo/UserSchema');
-
-mongoose.connect(process.env.NODE_ENV !== 'development' ? 'mongodb://db:27017' : 'mongodb://localhost:27017/test', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-}, (err) => {
-	if(err){
-		throw err;
-	} else {
-		console.log('successful db connection');
-	}
-});
+const Database = require('./mongo/dbinteractions');
 
 const saltrounds = 10;
 const sampleHash = bcrypt.hash('st18chenh', saltrounds);
