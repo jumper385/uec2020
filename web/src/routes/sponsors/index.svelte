@@ -50,7 +50,7 @@
     margin: 24pt auto;
     padding: 0 12pt;
     box-sizing: border-box;
-    border-left: solid 3px yellow;
+    border-left: solid 3px #fcd703;
   }
 
   .announcement .primary .title {
