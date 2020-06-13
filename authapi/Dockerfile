@@ -1,6 +1,6 @@
-FROM node:latest
+FROM node:slim
 WORKDIR /app
 COPY . .
-RUN yarn install
+RUN npm install
 EXPOSE 3000
 CMD ["npm","start"]
