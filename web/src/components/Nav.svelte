@@ -1,7 +1,19 @@
+<script context='module'>
+	export async function preload(page, session) {
+    const res = await this.fetch("http://localhost:3003/verify", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${session.token}` },
+    });
+    const credentials = await res.json()
+    return {credentials}
+  }
+</script>
+
 <script>
 	import { fade, fly } from 'svelte/transition';
 	let banner = {}
 	let closed = false;
+	export let credentials;
 </script>
 
 <svelte:head>
@@ -86,6 +98,7 @@
 <nav>
 	<a href='.'>
 		<img class='logo' src='logo96.png' alt='uec logo'/>
+		<p>hey {credentials ? credentials.firstname : 'stranger'}</p>
 	</a>
 
 	<div class='link-holder'>

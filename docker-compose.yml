@@ -17,13 +17,17 @@ services:
         volumes:
             - "./authapi:/app"
         restart: unless-stopped
+        ports:
+            - "5005:3000"
+        expose:
+            - "3000"
         networks: 
             - default
 
     proxy:
         build: ./nginx
         ports:
-            - '5000:80'
+            - '80:80'
         volumes:
             - "proxy:/etc/nginx/conf.d"
         restart: unless-stopped

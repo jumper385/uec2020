@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const User = require('./mongo/UserSchema');
 const db = require('./mongo/mongoosehelpers');
@@ -10,9 +11,11 @@ const db = require('./mongo/mongoosehelpers');
 const saltrounds = 10;
 const app = express();	
 const jwtkey = process.env.NODE_ENV === 'development' ? 'secretkey' : process.env.JWT_KEY;
+const port  = process.env.PORT || 3000
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cors());
 
 app.get('/',(req,res) => {
 	res.json({message:'welcome to the authentication api'});
@@ -39,7 +42,6 @@ app.post('/profile', async (req,res) => {
 
 app.post('/login', async (req,res) => {
 	try {
-
 		const {username, password} = req.body;
 
 		const userquery = await db.queryCollection(User, {$or:[{username:username}, {email:username}]});
@@ -61,6 +63,7 @@ app.post('/login', async (req,res) => {
 
 app.get('/verify', async (req,res) => {
 	try{
+		console.log(req.headers)
 		let token = req.headers.authorization.split(' ')[1];
 		let verify = await jwt.verify(token, jwtkey);
 		res.status(200).json(verify);
@@ -69,4 +72,4 @@ app.get('/verify', async (req,res) => {
 	}
 });
 
-app.listen(3000, () => console.log('new connection'));
+app.listen(port, () => console.log(`listening on port ${port}`));
