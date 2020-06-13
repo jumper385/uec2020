@@ -1,38 +1,34 @@
 import express from 'express';
 import sirv from 'sirv';
-import session from 'express-session';
-import sessionfilestore from 'session-file-store';
 import * as bodyParser from 'body-parser';
 import compression from 'compression';
+// import cookieParser from 'cookie-parser'
+import expressSession from 'express-session'
+import sessionFileStore from 'session-file-store';
+// import jwt from 'jsonwebtoken'
 import * as sapper from '@sapper/server';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
-const app = express();
-const FileStore = new sessionfilestore(session);
+const app = express()
+const FileStore = new sessionFileStore(expressSession)
 
-app.use(compression({ threshold: 0 }));
-app.use(session({
-	resave: true,
+app.use(compression({ threshold: 0 }))
+app.use(sirv('static', { dev }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(expressSession({
+	secret:'secret',
+	cookie:{maxAge:60000 * 60 * 24},
 	saveUninitialized: true,
-	cookie: {
-		maxAge: 31536000
-	},
-	secret:'cookiesecret',
-	store: new FileStore({
-		path:'.sessions'
-	})
-}));
-app.use(sirv('static', { dev }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+	resave: true,
+	store: new FileStore({path:'.sessions'})
+}))
 app.use(sapper.middleware({
-	session: (req,res) => {
-		return ({
-			token:req.session.token,
-			secret:'cookiesecret'
-		});
-	}
-}));
+	session: (req,res) => ({
+		token: req.session.token,
+		authenticated:false
+	})
+}))
 
 app.listen(PORT);

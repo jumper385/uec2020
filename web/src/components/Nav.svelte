@@ -1,19 +1,9 @@
-<script context='module'>
-	export async function preload(page, session) {
-    const res = await this.fetch("http://localhost:3003/verify", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${session.token}` },
-    });
-    const credentials = await res.json()
-    return {credentials}
-  }
-</script>
-
 <script>
 	import { fade, fly } from 'svelte/transition';
+	import { goto, stores } from "@sapper/app";
+	const { session } = stores();
 	let banner = {}
 	let closed = false;
-	export let credentials;
 </script>
 
 <svelte:head>
@@ -27,17 +17,19 @@
 		display:flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0 32pt;
+		padding: 0 16pt;
 		padding-top:12pt;
 		margin-bottom: 12pt;
 	}
 
 	nav .logo {
 		height:30pt;
+		margin-right:32pt;
 	}
 
 	nav .link-holder {
 		margin:0;
+		/* background:pink; */
 	}
 
 	nav .link {
@@ -60,7 +52,7 @@
 		width:100vw;
 		text-align:center;
 		font-weight: 600;
-		font-size:8pt;
+		font-size:10pt;
 		padding:0 16pt;
 		display: flex;
 		align-items: center;
@@ -78,6 +70,23 @@
 		cursor: pointer;
 	}
 
+	.link-agg {
+		width:100%;
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	button.link {
+		border:none;
+		font-size:1em;
+		background:none;
+		color: rgb(0,100,200);
+		text-decoration: none;
+		text-transform: capitalize;
+		cursor: pointer;
+	}
+
 	 @media (max-width: 500pt){
 		 nav {
 			 display:flex;
@@ -86,10 +95,16 @@
 			 height:auto;
 		 }
 
+		 nav .link {
+			 font-size: 0.8em;
+		 }
+
+		 nav .logo {
+			margin-right:0pt;
+		}
+
 		 nav .link-holder {
 			 margin-top:8pt;
-			 display: grid;
-			 grid-template-columns: 1fr 1fr 1fr 1fr;
 		 }
 	 }
 
@@ -98,14 +113,22 @@
 <nav>
 	<a href='.'>
 		<img class='logo' src='logo96.png' alt='uec logo'/>
-		<p>hey {credentials ? credentials.firstname : 'stranger'}</p>
 	</a>
-
-	<div class='link-holder'>
-		<a class='link' href='.'>home</a>
-		<a class='link' href='about'>about</a>
-		<a class='link' href='sponsors'>sponsors</a>
-		<a class='link' href='contact'>contact</a>
+	<div class='link-agg'>
+		<div class='link-holder'>
+			<a class='link' href='.'>home</a>
+			<a class='link' href='about'>about</a>
+			<a class='link' href='sponsors'>sponsors</a>
+			<a class='link' href='contact'>contact</a>
+		</div>
+		<div class='link-holder'>
+			{#if $session.authenticated}
+			<button class='link' style='color:#ff4757' on:click={e => $session.authenticated = false}>logout</button>
+			{:else}
+			<a class='link' href='login'>login</a>
+			<a class='link' href='signup'>signup</a>
+			{/if}
+		</div>
 	</div>
 </nav>
 

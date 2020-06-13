@@ -1,6 +1,15 @@
+<script context='module'>
+export const preload = async(page, session) => {
+	const { token } = session;
+	return {authenticated:!!token}
+}
+</script>
+
 <script>
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
+	import { goto, stores } from "@sapper/app";
+	const { session } = stores();
 	export let segment;
 </script>
 
