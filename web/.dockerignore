@@ -1,0 +1,4 @@
+node_modules
+.env
+__sapper__
+package-lock.json
