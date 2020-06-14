@@ -79,12 +79,19 @@ app.post("/login", async (req, res) => {
 
 app.get("/verify", async (req, res) => {
   try {
-    console.log(req.headers);
     let token = req.headers.authorization.split(" ")[1];
+    if (!token) res.status(401).json({message:'unauthorized access...'})
+
     let verify = await jwt.verify(token, jwtkey);
-    res.status(200).json(verify);
+    if (!verify) res.status(401).json({message:'unauthorized access...'})
+
+    const userexist = await db.queryCollection(User, { email:verify.email, username:verify.username })
+    if (userexist) res.status(201).json(userexist[0])
+
+    else res.status(401).json({message:'unauthorized access...'})
+    
   } catch (err) {
-    res.status(500).json({ error: true, message: err.message });
+    res.status(401).json({ error: true, message: err.message });
   }
 });
 

@@ -5,10 +5,9 @@ import compression from 'compression';
 // import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import sessionFileStore from 'session-file-store';
-// import jwt from 'jsonwebtoken'
 import * as sapper from '@sapper/server';
 
-const { PORT, NODE_ENV } = process.env;
+const { PORT, NODE_ENV, MONGODB, AUTH_SERVER} = process.env;
 const dev = NODE_ENV === 'development';
 const app = express()
 const FileStore = new sessionFileStore(expressSession)
@@ -25,9 +24,9 @@ app.use(expressSession({
 	store: new FileStore({path:'.sessions'})
 }))
 app.use(sapper.middleware({
-	session: (req,res) => ({
-		token: req.session.token,
-		authenticated:false
+	session: async (req,res) => ({
+		token: req.session.token || null,
+		authserver: AUTH_SERVER || 'localhost:3003',
 	})
 }))
 

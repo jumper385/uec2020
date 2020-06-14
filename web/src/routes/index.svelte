@@ -5,8 +5,6 @@
   const toggleVisibility = () => {
     visible = visible ? false : true;
   };
-
-  let name = "world";
 </script>
 
 <style>

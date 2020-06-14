@@ -122,8 +122,9 @@
 			<a class='link' href='contact'>contact</a>
 		</div>
 		<div class='link-holder'>
-			{#if $session.authenticated}
-			<button class='link' style='color:#ff4757' on:click={e => $session.authenticated = false}>logout</button>
+			{#if $session.token}
+			<a class='link' href='profile'>profile</a>
+			<button class='link' style='color:#ff4757' on:click={e => $session.token = null}>logout</button>
 			{:else}
 			<a class='link' href='login'>login</a>
 			<a class='link' href='signup'>signup</a>

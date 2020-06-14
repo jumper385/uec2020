@@ -19,8 +19,6 @@ services:
         restart: unless-stopped
         ports:
             - "5005:3000"
-        expose:
-            - "3000"
         networks: 
             - default
 
@@ -31,6 +29,9 @@ services:
         volumes:
             - "proxy:/etc/nginx/conf.d"
         restart: unless-stopped
+        environment:
+            - AUTH_SERVER=auth:3003
+            - MONGODB=db:27017
         networks:
             - default
 
