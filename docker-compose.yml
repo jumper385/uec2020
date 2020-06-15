@@ -9,17 +9,9 @@ services:
         volumes:
             - "./web/src:/app/src"
         restart: unless-stopped
+        environment: 
+            - MONGODB=db:27017
         networks:
-            - default
-    
-    auth:
-        build: ./authapi
-        volumes:
-            - "./authapi:/app"
-        restart: unless-stopped
-        ports:
-            - "5005:3000"
-        networks: 
             - default
 
     proxy:
@@ -29,9 +21,6 @@ services:
         volumes:
             - "proxy:/etc/nginx/conf.d"
         restart: unless-stopped
-        environment:
-            - AUTH_SERVER=auth:3003
-            - MONGODB=db:27017
         networks:
             - default
 

@@ -7,8 +7,6 @@
       headers: { Authorization: `Bearer ${session.token}` },
     });
 
-    console.log(res.status)
-
     if (res.status == 401) this.redirect(302, '/login')
     if (res.status == 500) this.error(res.status, "Internal Auth Error")
     if (res.status == 200) {
