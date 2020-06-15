@@ -11,7 +11,6 @@
 <script>
   import { fade, fly } from "svelte/transition";
   export let positions;
-  console.log(positions)
 </script>
 
 <style>

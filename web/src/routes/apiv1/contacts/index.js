@@ -4,7 +4,7 @@ import { Contact } from '../../../dbschemas/contactschemas';
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	console.log('yOHH! A get request to contacts api!')
+	console.log('yOHH! A get request to contacts api!');
 
 	let documents = await db.queryCollection(Contact, req.body);
 
