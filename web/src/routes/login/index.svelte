@@ -6,16 +6,16 @@
     password = null;
   $: button = "Login";
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     let response = await fetch(`apiv1/auth/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: username.toLowerCase(),
-        password: password
-      })
+        password: password,
+      }),
     });
     if (response.status == 201) {
       $session.token = await response.json();
@@ -27,15 +27,55 @@
   };
 </script>
 
-<form on:submit|preventDefault={onSubmit}>
-  <p>
-    Username
-    <input bind:value={username} name="username" />
-  </p>
-  <p>
-    Password
-    <input bind:value={password} type="password" name="password" />
-  </p>
+<svelte:head>
+  <title>Login</title>
+</svelte:head>
 
-  <input type="submit" bind:value={button} />
-</form>
+<style>
+  .container {
+    width:250pt;
+    margin:0 auto;
+  }
+
+  .container h1 {
+    text-align:center;
+  }
+
+  .container .inputbutton {
+    -webkit-appearance: none;
+    width:100%;
+    border:0;
+    padding: 8pt 0;
+    background: #fcd703;
+    border-radius: 6pt;
+  }
+
+  .inputcontainer .input_title {
+    text-align:left;
+    margin:0;
+    margin-left:6pt;
+  }
+
+  .inputcontainer .textinput {
+    -webkit-appearance: none;
+    width:100%;
+    box-sizing:border-box;
+    margin-bottom:8pt;
+  }
+
+</style>
+
+<div class='container'>
+  <h1>Login</h1>
+  <form on:submit|preventDefault={onSubmit}>
+    <div class='inputcontainer'>
+      <p class='input_title'>Username</p>
+      <input class='textinput' bind:value={username} name="username" />
+    </div>
+    <div class='inputcontainer'>
+      <p class='input_title'>Password</p>
+      <input class='textinput' bind:value={password} type="password" name="password" />
+    </div>
+    <input class='inputbutton' type="submit" bind:value={button} />
+  </form>
+</div>
