@@ -95,6 +95,11 @@
 			 height:auto;
 		 }
 
+		 nav .link-agg {
+			 display:flex;
+			 flex-direction: column;
+		 }
+
 		 nav .link {
 			 font-size: 0.8em;
 		 }
