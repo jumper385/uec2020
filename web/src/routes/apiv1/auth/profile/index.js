@@ -39,7 +39,7 @@ export const post = async (req, res) => {
     const { username, email, password } = req.body;
 
     const accountQuery = await queryCollection(Account, {
-      $or: [{ email: email }, { username: username }],
+      $or: [{ email: email.toLowerCase() }, { username: username.toLowerCase() }],
     });
 
     if (accountQuery.length > 0)

@@ -10,7 +10,9 @@
                 "Content-Type": "application/json",
             }, 
             body: JSON.stringify({
-                ...newschema
+                ...newschema,
+                username: newschema.username.toLowerCase(),
+                email: newschema.email.toLowerCase()
             }),
         })
         if (response.status == 200){
