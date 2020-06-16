@@ -119,6 +119,7 @@
       <input
         disabled={!username}
         class="inputbutton loginerror"
+        style={success && 'background:#2ecc71;'}
         type="submit"
         bind:value={button} />
     {/if}
