@@ -64,27 +64,6 @@
     background: #ff4757;
     color: white;
   }
-
-  .inputcontainer .input_title {
-    text-align: left;
-    margin: 0;
-    font-size: 1em;
-    margin-left: 6pt;
-    margin-bottom: 3pt;
-    color: rgba(0, 0, 0, 0.36);
-    text-transform: lowercase;
-  }
-
-  .inputcontainer .textinput {
-    -webkit-appearance: none;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 8pt;
-    padding: 6pt;
-    border: none;
-    border-radius: 6pt;
-    border: rgba(0, 0, 0, 0.12) solid 1pt;
-  }
 </style>
 
 <svelte:head>
