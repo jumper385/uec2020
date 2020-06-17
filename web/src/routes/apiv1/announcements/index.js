@@ -17,17 +17,34 @@ export const get = async (req, res) => {
 };
 
 export const post = async (req, res) => {
-	// TODO: Add auth protection
-	console.log(`post request w/ ${JSON.stringify(req.body)}`);
-	let document = await db.postCollection(Announcement, req.body);
-	res.setHeader('Content-Type', 'application/json');
-	res.json({
-		message: 'Successful POST request',
-		documentsSubmitted: document ? document.length || 1 : 0,
-		documents: {
-			document
+
+	// check the verification
+	const { verified, token } = req.auth
+	if (!verified) res.status(401).json({error:true, message:'Unauthorized Access'})
+	
+	try {
+		// synthesize the document data
+		let newAnnouncement = {
+			...req.body,
+			author: token.username
 		}
-	});
+
+		// create the new collection
+		let document = await db.postCollection(Announcement, newAnnouncement);
+		
+		// return a response for the new document
+		res.setHeader('Content-Type', 'application/json');
+		res.json({
+			message: 'Successful POST request',
+			documentsSubmitted: document ? document.length || 1 : 0,
+			documents: {
+				document
+			}
+		});
+		
+	} catch (err) {
+		res.status(500).json({error:true, message:err.message})
+	}
 };
 
 export const put = async (req, res) => {

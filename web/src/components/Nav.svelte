@@ -125,8 +125,11 @@
 			<a class='link' href='about'>about</a>
 			<a class='link' href='sponsors'>sponsors</a>
 			<a class='link' href='contact'>contact</a>
+			{#if $session.token}
+			<a class='link' href='newarticle'>Create Announcement</a>
+			{/if}
 		</div>
-		<div class='link-holder'>
+		<!-- <div class='link-holder'>
 			{#if $session.token}
 			<a class='link' href='profile'>profile</a>
 			<button class='link' style='color:#ff4757' on:click={e => $session.token = null}>logout</button>
@@ -134,7 +137,7 @@
 			<a class='link' href='login'>login</a>
 			<a class='link' href='signup'>signup</a>
 			{/if}
-		</div>
+		</div> -->
 	</div>
 </nav>
 
