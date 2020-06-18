@@ -67,11 +67,6 @@
     font-weight:bold;
     color:rgba(0,0,0,.36);
   }
-  
-
-  .announcement .content {
-    
-  }
 
   .announcement .metainfo {
     margin:0;

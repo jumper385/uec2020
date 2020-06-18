@@ -21,8 +21,12 @@
 	<link rel='stylesheet' href='github-markdown.css'>
 </svelte:head>
 
-<h1>{post.title}</h1>
-
-<div class='markdown-body'>
-	{@html marked(post.content)}
-</div>
+<div class="preview">
+    <h1 style="text-align:center">{post.title}</h1>
+    <p style="text-align:center">by {post.company}</p>
+    <p style="width:250pt; margin: 0 auto; text-align:center">TLDR: {post.summary}</p>
+    <br/>
+    <div class="markdown-body" style="max-width:500pt; margin: 0 auto;">
+      {@html marked(post.content || 'no content right now...')}
+    </div>
+  </div>
