@@ -22,6 +22,7 @@
 </svelte:head>
 
 <div class="preview">
+	<p style='text-align:center; font-size:8pt; font-weight:600; color:rgba(0,0,0,.36)'>{post.timestamp}</p>
     <h1 style="text-align:center">{post.title}</h1>
     <p style="text-align:center">by {post.company}</p>
     <p style="width:250pt; margin: 0 auto; text-align:center">TLDR: {post.summary}</p>

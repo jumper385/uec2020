@@ -107,7 +107,7 @@
 
         <div class='primary'>
           <h3 style='font-weight:bold' class="title">{announcement.title}</h3>
-          <p class='handle'>@{announcement.author}</p>
+          <p class='handle'>@{announcement.author} - {announcement.timestamp}</p>
         </div>
 
         <p class='content'>{announcement.summary || 'A summary is not available...'}</p>
