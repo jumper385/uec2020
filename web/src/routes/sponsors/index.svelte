@@ -2,7 +2,12 @@
   export function preload({ params, query }) {
     return this.fetch(`sponsors.json`)
       .then(r => r.json())
-      .then(posts => {
+      .then(data => {
+        let posts  = data.sort((a,b) => {
+          let timedelta = new Date(b.timestamp) - new Date(a.timestamp)
+          console.log(timedelta)
+          return timedelta
+        })
         return { posts };
       });
   }

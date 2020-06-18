@@ -26,11 +26,12 @@ export const post = async (req, res) => {
 		// synthesize the document data
 		let newAnnouncement = {
 			...req.body,
-			author: token.username
+			author: token.username,
+			timestamp: new Date()
 		}
 
 		// create the new collection
-		let document = await db.postCollection(Announcement, newAnnouncement);
+		let document = await db.postCollection(Announcement, newAnnouncement)
 		
 		// return a response for the new document
 		res.setHeader('Content-Type', 'application/json');
