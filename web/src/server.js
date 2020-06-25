@@ -60,13 +60,18 @@ app.use(async (req, res, next) => {
         return next();
       }
 
+      let {password, ...profile} = accountQuery[0]._doc
+      console.log(profile)
+
       // return verified signature and token
       req.auth = {
         verified: !!tokenverify,
-        token: tokenverify,
+        token: profile,
       };
+
       return next();
     }
+
   } catch (err) {
     req.auth = {
       verified: false,
