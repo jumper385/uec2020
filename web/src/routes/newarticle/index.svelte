@@ -20,7 +20,6 @@
 
 <script>
   export let credentials;
-  console.log(credentials)
   let post = {};
   import marked from "marked";
   import { goto, stores } from "@sapper/app";
