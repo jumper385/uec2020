@@ -61,7 +61,6 @@ app.use(async (req, res, next) => {
       }
 
       let {password, ...profile} = accountQuery[0]._doc
-      console.log(profile)
 
       // return verified signature and token
       req.auth = {
