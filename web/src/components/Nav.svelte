@@ -127,6 +127,7 @@
 			<a class='link' href='contact'>contact</a>
 			{#if $session.token}
 			<a class='link' href='newarticle'>Create Announcement</a>
+			<a class='link' href='dashboard'>Dashboard</a>
 			{/if}
 		</div>
 		<!-- <div class='link-holder'>

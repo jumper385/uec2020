@@ -29,6 +29,11 @@ app.use(
     store: new FileStore({ path: ".sessions" }),
   })
 );
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(async (req, res, next) => {
   // if there are no auth headers, just continue to next middleware
   if (req.headers.authorization == undefined) {
@@ -59,7 +64,8 @@ app.use(async (req, res, next) => {
         req.auth = { verified: false };
         return next();
       }
-
+      
+      // split password from the rest of the profile
       let {password, ...profile} = accountQuery[0]._doc
 
       // return verified signature and token

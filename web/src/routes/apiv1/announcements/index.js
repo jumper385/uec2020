@@ -14,6 +14,7 @@ export const get = async (req, res) => {
 		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
 		documents: documents
 	});
+
 };
 
 export const post = async (req, res) => {
@@ -49,7 +50,8 @@ export const post = async (req, res) => {
 };
 
 export const put = async (req, res) => {
-	// TODO: Add auth protection
+	let {verified, token} = req.auth
+	if(!verified) res.status(401).json('unauthorized')
 	console.log(`put request w/ ${JSON.stringify(req.body)}`);
 	let { query, delta } = req.body;
 	let document = await db.editCollection(Announcement, query, delta);
@@ -58,7 +60,9 @@ export const put = async (req, res) => {
 };
 
 export const del = async (req, res, next) => {
-	// TODO: Add auth protection
+	console.log(req.headers, req.body)
+	let {verified, token} = req.auth
+	if(!verified) res.status(401).json('unauthorized')
 	console.log(`delete request w/ ${JSON.stringify(req.body)}`);
 	res.setHeader('Content-Type', 'application/json');
 	res.json(await db.deleteCollection(Announcement, req.body));

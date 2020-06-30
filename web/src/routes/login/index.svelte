@@ -23,6 +23,7 @@
 
     if (response.status == 201) {
       $session.token = await response.json();
+
       button = $session.token && "Success!";
       success = $session.token && true;
       goto("/profile");
