@@ -8,7 +8,15 @@ export const post = (req,res) => {
     console.log(req.body, permissions)
 
     if (!verified) res.status(401).json('unauthorized access')
-    if (!!token && !token.role.includes(permissions)) res.status(401).json('unauthorized access')
-    console.log(token.role, permissions)
+    
+    if (!!token) {
+        let roleAllowed = token.role.some(accountRole => {
+            console.log(accountRole)
+            return permissions.includes(accountRole)
+        })
+        if (!roleAllowed) res.status(401).json('unauthorized access')
+    }
+
+    // console.log(token.role, permissions)
     res.status(201).json(token)
 }

@@ -9,7 +9,7 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        permissions: ["webmaster"],
+        permissions: ["webmaster","comittee"],
       }),
     });
 
