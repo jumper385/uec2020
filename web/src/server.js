@@ -7,6 +7,7 @@ import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
 import * as sapper from "@sapper/server";
 import jwt from "jsonwebtoken";
+import helmet from 'helmet'
 
 import { queryCollection } from "./routes/mongoosehelpers";
 import { Account } from "./dbschemas/accountschema";
@@ -20,6 +21,7 @@ app.use(compression({ threshold: 0 }));
 app.use(sirv("static", { dev }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(helmet())
 app.use(
   expressSession({
     secret: "secret",
