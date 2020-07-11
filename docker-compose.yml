@@ -35,6 +35,11 @@ services:
             - "27017"
         volumes:
             - "mongodb:/data/db"
+            - "./db/create-root.js:/docker-entrypoint-initdb.d/init-mongo.js:ro"
+        environment: 
+            - MONGO_INITDB_DATABASE=amydb
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=rootpwd2020
         networks:
             - default
 
