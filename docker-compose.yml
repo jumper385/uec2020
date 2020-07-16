@@ -7,7 +7,7 @@ services:
         expose: 
             - "3000"
         volumes:
-            - "./web/src:/app/src"
+            - ./web/src:/app/src
         restart: unless-stopped
         environment: 
             - MONGODB=db:27017
@@ -18,8 +18,13 @@ services:
         build: ./nginx
         ports:
             - '80:80'
+            - '443:443'
         volumes:
-            - "proxy:/etc/nginx/conf.d"
+            - ./nginx:/etc/nginx/conf.d
+            - web-root:/var/www/html
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - ./dhparam:/etc/ssl/certs
         restart: unless-stopped
         networks:
             - default
@@ -30,12 +35,30 @@ services:
             - "27017"
         volumes:
             - "mongodb:/data/db"
+            - "./db/create-root.js:/docker-entrypoint-initdb.d/init-mongo.js:ro"
+        environment: 
+            - MONGO_INITDB_DATABASE=amydb
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=rootpwd2020
         networks:
             - default
 
+    certbot:
+        image: certbot/certbot
+        container_name: certbot
+        volumes:
+        - certbot-etc:/etc/letsencrypt
+        - certbot-var:/var/lib/letsencrypt
+        - web-root:/var/www/html
+        depends_on:
+        - proxy
+        command: certonly --webroot --webroot-path=/var/www/html --email webmaster@uec.org.au --agree-tos --no-eff-email --force-renewal -d uec.org.au  -d www.uec.org.au
+
 volumes:
-    proxy: 
-    mongodb: 
+    mongodb:
+    web-root:
+    certbot-etc:
+    certbot-var: 
 
 networks:
     default:
