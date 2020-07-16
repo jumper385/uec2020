@@ -10,7 +10,7 @@ export const get = async (req, res) => {
 		let rolearray = contact.role.filter(role => {
 			return role != 'committee' && role != 'executive' && role
 		})
-		
+
 		return {...contact, role:rolearray}
 	})
 	
@@ -19,7 +19,7 @@ export const get = async (req, res) => {
 
 export const post = async (req, res) => {
 	// TODO: Add auth protection
-	let document = await db.postCollection(Contact, req.body);
+	let document = await db.postCollection(Account, req.body);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({
 		message: 'Successful POST request',
@@ -33,7 +33,7 @@ export const post = async (req, res) => {
 export const put = async (req, res) => {
 	// TODO: Add auth protection
 	let { query, delta } = req.body;
-	let document = await db.editCollection(Contact, query, delta);
+	let document = await db.editCollection(Account, query, delta);
 	res.setHeader('Content-Type', 'application/json');
 	res.json(document);
 };
@@ -41,5 +41,5 @@ export const put = async (req, res) => {
 export const del = async (req, res, next) => {
 	// TODO: Add auth protection
 	res.setHeader('Content-Type', 'application/json');
-	res.json(await db.deleteCollection(Contact, req.body));
+	res.json(await db.deleteCollection(Account, req.body));
 };
