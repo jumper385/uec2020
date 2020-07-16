@@ -17,23 +17,8 @@ export const get = async (req, res) => {
 	res.json(contactInfo)
 };
 
-export const post = async (req, res) => {
-	// TODO: Add auth protection
-	let document = await db.postCollection(Account, req.body);
-	res.setHeader('Content-Type', 'application/json');
-	res.json({
-		message: 'Successful POST request',
-		documentsSubmitted: document ? document.length || 1 : 0,
-		documents: {
-			document
-		}
-	});
-};
-
 export const put = async (req, res) => {
 	// TODO: Add auth protection
-	console.log('hello!!!')
-	console.log(req.body)
 	let { query, delta } = req.body;
 	let document = await db.editCollection(Account, query, delta);
 	res.setHeader('Content-Type', 'application/json');
