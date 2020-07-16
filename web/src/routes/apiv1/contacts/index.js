@@ -32,6 +32,8 @@ export const post = async (req, res) => {
 
 export const put = async (req, res) => {
 	// TODO: Add auth protection
+	console.log('hello!!!')
+	console.log(req.body)
 	let { query, delta } = req.body;
 	let document = await db.editCollection(Account, query, delta);
 	res.setHeader('Content-Type', 'application/json');
