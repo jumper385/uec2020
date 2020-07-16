@@ -9,7 +9,7 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        permissions: ["webmaster","comittee"],
+        permissions: ["committee"],
       }),
     });
 
@@ -17,6 +17,7 @@
     if (res.status == 500) this.error(res.status, await res.message);
     if (res.status == 201) {
       credentials = await res.json();
+      console.log(credentials)
     }
 
     const getArticles = await this.fetch("apiv1/announcements", {
@@ -54,10 +55,7 @@
   };
 </script>
 
-<div style="display:grid; grid-template-columns:1fr 2fr 1fr; margin:0 auto;">
-  {#each documents as doc}
-    <p>{doc.author}</p>
-    <p>{doc.title}</p>
-    <p on:click|once={deleteAnnouncement}>delete</p>
-  {/each}
-</div>
+<h2>Account Functions</h2>
+{#if credentials.role.includes('committee')}
+<a class='link' href='newarticle'>Create Announcement</a>
+{/if}

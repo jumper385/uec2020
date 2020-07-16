@@ -1,19 +1,20 @@
 import * as db from '../../mongoosehelpers';
-import { Contact } from '../../../dbschemas/contactschemas';
+import { Account } from '../../../dbschemas/accountschema'
 
-// HTTP FUNCTIONS
 export const get = async (req, res) => {
+	let accounts = await db.queryCollection(Account, {role:'committee'});
 
-	console.log('yOHH! A get request to contacts api!');
-
-	let documents = await db.queryCollection(Contact, req.body);
-
-	res.setHeader('Content-Type', 'application/json');
-	res.json({
-		message: 'Successful GET request to contacts api',
-		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
-		documents: documents
-	});
+	let contactInfo = accounts.map(profile => {
+		let { password, username, _id, ...contact} = profile._doc
+		
+		let rolearray = contact.role.filter(role => {
+			return role != 'committee' && role != 'executive' && role
+		})
+		
+		return {...contact, role:rolearray}
+	})
+	
+	res.json(contactInfo)
 };
 
 export const post = async (req, res) => {
