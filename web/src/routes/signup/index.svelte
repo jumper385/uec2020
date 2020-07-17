@@ -57,7 +57,12 @@
     </div>
     <div class="inputcontainer">
       <p class="input_title">Gender (optional)</p>
-      <input class="textinput" bind:value={newschema.gender} name="gender" />
+      <select class="textinput" bind:value={newschema.gender} name="gender" required>
+        <option value={undefined}>None</option>
+        <option value={'male'}>Male</option>
+        <option value={'female'}>Female</option>
+        <option value={'other'}>Other</option>
+      </select>
     </div>
     <div class="inputcontainer">
       <p class="input_title">Profession (optional)</p>
