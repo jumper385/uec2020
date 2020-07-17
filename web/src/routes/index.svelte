@@ -63,19 +63,17 @@
   <div class="textHolder">
     <h1>
       The
+      <mark style="background:rgb(252,215,3)">The University Engineers' Club</mark>
       <mark style="background:#27348b; color:white">
-        University of Western Australia
+        of University of Western Australia
       </mark>
-      <mark style="background:rgb(252,215,3)">Engineers' Club</mark>
     </h1>
 
     <p class="sub">8th September 1921 - Present</p>
     <p>
       The University of Western Australia Engineers Club is the
-      <b>flagship faculty club</b>
-      of UWA. Symbolic to the engineering mindset, our crest's moto "
-      <em>non loqui, sed facere</em>
-      " translates to
+      <b>flagship faculty society</b>
+      of UWA. Symbolic to the engineering mindset, our crest's motto "<em>non loqui, sed facere</em>" translates to
       <b>"Not words, but actions"</b>
       ...
     </p>
