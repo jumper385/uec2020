@@ -65,7 +65,7 @@
       The
       <mark style="background:rgb(252,215,3)">The University Engineers' Club</mark>
       <mark style="background:#27348b; color:white">
-        of University of Western Australia
+        of the University of Western Australia
       </mark>
     </h1>
 
