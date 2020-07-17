@@ -63,9 +63,9 @@
   <div class="textHolder">
     <h1>
       The
-      <mark style="background:rgb(252,215,3)">The University Engineers' Club</mark>
+      <mark style="background:rgb(252,215,3)">The University Engineers' Club</mark> of the
       <mark style="background:#27348b; color:white">
-        of the University of Western Australia
+        University of Western Australia
       </mark>
     </h1>
 
