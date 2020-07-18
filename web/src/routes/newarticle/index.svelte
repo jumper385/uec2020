@@ -31,7 +31,7 @@
       method:'POST', 
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${$session.token}`,
+        authorization: `Bearer ${$session.token}`,
       },
       body:JSON.stringify(post)
     })

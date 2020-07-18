@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { queryCollection } from "../../../mongoosehelpers";
+import { queryCollection, editCollection } from "../../../mongoosehelpers";
 import { Account } from "../../../../dbschemas/accountschema";
 const saltrounds = 10;
 
@@ -62,5 +62,12 @@ export const post = async (req, res) => {
 
 export const put = async (req, res) => {
   const { verified, token } = req.auth;
-  console.log(verified);
+  console.log(token)
+  if (verified) {
+    let update = await editCollection(Account, {_id:token._id}, {
+      ...req.body
+    })
+    console.log(update)
+    res.json(update)
+  }
 };
