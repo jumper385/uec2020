@@ -67,7 +67,7 @@ export const put = async (req, res) => {
     let update = await editCollection(Account, {_id:token._id}, {
       ...req.body
     })
-    console.log(update)
     res.json(update)
   }
+  res.status(401).json({message:"unauthorized access", error:true})
 };
