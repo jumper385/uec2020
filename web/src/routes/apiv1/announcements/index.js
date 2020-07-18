@@ -4,13 +4,26 @@ import * as db from '../../mongoosehelpers';
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	console.log(`get w/ ${JSON.stringify(req.body)}`);
+	console.log(`get w/ ${JSON.stringify(req.params)}`);
+
+	let documents = await db.queryCollection(Announcement, req.params);
+	
+	res.status(200).json({
+		message: 'Successful GET request',
+		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
+		documents: documents
+	});
+
+};
+
+export const patch = async (req, res) => {
+
+	console.log(`patch w/ ${JSON.stringify(req.body)}`);
 
 	let documents = await db.queryCollection(Announcement, req.body);
-
-	res.setHeader('Content-Type', 'application/json');
-	res.json({
-		message: 'Successful GET request',
+	
+	res.status(200).json({
+		message: 'Successful PATCH request',
 		documentCount: `We have ${documents.length} ${documents.length > 1 ? 'documents' : 'document'}`,
 		documents: documents
 	});

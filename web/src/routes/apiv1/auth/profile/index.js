@@ -49,8 +49,6 @@ export const post = async (req, res) => {
 
     const pwdhash = await bcrypt.hash(password, saltrounds);
 
-    const jwt = "secretkey";
-
     const newAccount = Account.create({
       ...req.body,
       password: pwdhash,

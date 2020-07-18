@@ -21,42 +21,6 @@
     width: 100%;
     margin: 0 auto;
   }
-  .table {
-    max-width: 500pt;
-    box-sizing: border-box;
-    margin: 0 auto;
-  }
-  .table .table-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    font-size: 10pt;
-    width: 100%;
-    box-sizing: border-box;
-    row-gap: 4pt;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 4pt 8pt;
-    border-radius: 8pt 8pt 0 0;
-  }
-
-  .table-row:first-child {
-    background: #fcd703;
-  }
-
-  .table .table-heading {
-    font-weight: 600;
-    box-sizing: border-box;
-    margin: 0;
-    width: 100%;
-  }
-
-  .table .table-element {
-    font-weight: 400;
-    text-transform: capitalize;
-    box-sizing: border-box;
-    margin: 0;
-    width: 100%;
-  }
-
   .role,
   .name {
     text-align: left;

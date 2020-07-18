@@ -1,12 +1,12 @@
 <script context="module">
   export function preload({ params, query }) {
     return this.fetch(`sponsors.json`)
-      .then(r => r.json())
-      .then(data => {
-        let posts  = data.sort((a,b) => {
-          let timedelta = new Date(b.timestamp) - new Date(a.timestamp)
-          return timedelta
-        })
+      .then((r) => r.json())
+      .then((data) => {
+        let posts = data.sort((a, b) => {
+          let timedelta = new Date(b.timestamp) - new Date(a.timestamp);
+          return timedelta;
+        });
         return { posts };
       });
   }
@@ -24,7 +24,7 @@
     { src: "conoco.png", alt: "conocophillips" },
     { src: "gpa.jpg", alt: "gpa engineering" },
     { src: "wood&grieve.png", alt: "wood & grieve" },
-    { src: "yara.png", alt: "yara" }
+    { src: "yara.png", alt: "yara" },
   ];
 </script>
 
@@ -58,34 +58,33 @@
   }
 
   .announcement .primary .title {
-    margin:0;
+    margin: 0;
   }
 
   .announcement .primary .handle {
-    margin:0;
+    margin: 0;
     font-size: 0.8em;
-    font-weight:bold;
-    color:rgba(0,0,0,.36);
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.36);
   }
 
   .announcement .metainfo {
-    margin:0;
-    font-size:0.8em;
+    margin: 0;
+    font-size: 0.8em;
     display: flex;
     align-items: center;
-    color:rgba(0,0,0,.36);
+    color: rgba(0, 0, 0, 0.36);
     font-weight: bold;
   }
 
-  .announcement .metainfo span{
-    font-size:1.5em;
-    color:rgba(0,0,0,.36);
+  .announcement .metainfo span {
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.36);
     margin-right: 6pt;
     display: flex;
     align-content: center;
     justify-content: center;
   }
-  
 </style>
 
 <svelte:head>
@@ -105,18 +104,31 @@
     {#each posts as announcement}
       <div class="announcement">
 
-        <div class='primary'>
-          <h3 style='font-weight:bold' class="title">{announcement.title}</h3>
-          <p class='handle'>@{announcement.author} - {announcement.timestamp}</p>
+        <div class="primary">
+          <h3 style="font-weight:bold" class="title">{announcement.title}</h3>
+          <p class="handle">
+            @{announcement.author} - {announcement.timestamp}
+          </p>
         </div>
 
-        <p class='content'>{announcement.summary || 'A summary is not available...'}</p>
+        <p class="content">
+          {announcement.summary || 'A summary is not available...'}
+        </p>
 
         <div>
-          <p class='metainfo'><span class='material-icons'>corporate_fare</span>{announcement.company || 'Company Unvavailable'}</p>
-          <p class='metainfo'><span class='material-icons'>link</span><a href='{announcement.content ? `sponsors/${announcement._id}` : announcement.link || null}'>{announcement.content ? `sponsors/${announcement._id}` : announcement.link || 'Link Unavailable...'}</a></p>
+          <p class="metainfo">
+            <span class="material-icons">corporate_fare</span>
+            {announcement.company || 'Company Unvavailable'}
+          </p>
+          <p class="metainfo">
+            <span class="material-icons">link</span>
+            <a
+              href={announcement.content ? `sponsors/${announcement._id}` : announcement.link || null}>
+              {announcement.content ? `sponsors/${announcement._id}` : announcement.link || 'Link Unavailable...'}
+            </a>
+          </p>
         </div>
-        
+
         <!-- <a href='sponsors/{announcement._id}'>Read More...</a> -->
       </div>
     {/each}

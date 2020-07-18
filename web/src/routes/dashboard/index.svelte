@@ -37,7 +37,6 @@
 
 <script>
   export let credentials;
-  export let documents;
 
   const deleteAnnouncement = async () => {
     console.log(query);
@@ -57,5 +56,6 @@
 
 <h2>Account Functions</h2>
 {#if credentials.role.includes('committee')}
-<a class='link' href='newarticle'>Create Announcement</a>
+<p><a class='link' href='articledashboard/newarticle'>Create Announcement</a></p>
+<p><a class='link' href='articledashboard/editarticle'>Edit Articles</a></p>
 {/if}

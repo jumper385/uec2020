@@ -27,7 +27,7 @@ export const post = async(req, res) => {
 
         // if password is correct, return jwt token containing the account details
         if (pwdverify) {
-            res.status(201).json(jwt.sign({ username: accountQuery[0].username, email: accountQuery[0].email }, "key"));
+            res.status(201).json(jwt.sign({ username: accountQuery[0].username, email: accountQuery[0].email }, process.env.JWT_KEY || 'key'));
         }
     } catch (err) {
         res.status(500).json({ error: true, message: err.message });

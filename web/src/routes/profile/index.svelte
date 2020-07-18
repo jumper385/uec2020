@@ -34,7 +34,7 @@
       }),
     });
     
-    if (uploadDelta.status == 401) this.redirect(302, "/login");
+    if (uploadDelta.status == 401) redirect(302, "/login");
     if (uploadDelta.status == 200) editing = false;
   };
 </script>
@@ -78,17 +78,8 @@
         </select>
       </div>
 
-      <div class="inputcontainer">
-        <p class="input_title">Profession</p>
-        <input
-          class="textinput"
-          bind:value={editvalues.profession}
-          name="profession" />
-      </div>
-
       <input class="formsubmitbutton" type="submit" value="Submit Changes" />
 
     </form>
-    <pre>{JSON.stringify(editvalues, null, 2)}</pre>
   {/if}
 {/if}

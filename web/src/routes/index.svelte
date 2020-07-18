@@ -56,6 +56,7 @@
   <link
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet" />
+  <link rel="stylesheet" href="github-markdown.css"/>
 </svelte:head>
 
 <div transition:fade={{ duration: 120 }} class="container">
@@ -63,7 +64,10 @@
   <div class="textHolder">
     <h1>
       The
-      <mark style="background:rgb(252,215,3)">The University Engineers' Club</mark> of the
+      <mark style="background:rgb(252,215,3)">
+        The University Engineers' Club
+      </mark>
+      of the
       <mark style="background:#27348b; color:white">
         University of Western Australia
       </mark>
@@ -73,7 +77,9 @@
     <p>
       The University of Western Australia Engineers Club is the
       <b>flagship faculty society</b>
-      of UWA. Symbolic to the engineering mindset, our crest's motto "<em>non loqui, sed facere</em>" translates to
+      of UWA. Symbolic to the engineering mindset, our crest's motto "
+      <em>non loqui, sed facere</em>
+      " translates to
       <b>"Not words, but actions"</b>
       ...
     </p>
