@@ -28,6 +28,8 @@ export const get = async (req, res) => {
       firstname: account.firstname,
       lastname: account.lastname,
       email: account.email,
+      gender: account.gender,
+      position: account.position,
     });
   } catch (err) {
     res.status(401).json({ error: true, message: err.message });

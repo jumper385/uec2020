@@ -33,7 +33,9 @@
         ...editvalues,
       }),
     });
-    console.log(await uploadDelta.json());
+    
+    if (uploadDelta.status == 401) this.redirect(302, "/login");
+    if (uploadDelta.status == 200) editing = false;
   };
 </script>
 
