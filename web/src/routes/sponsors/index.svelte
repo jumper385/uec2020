@@ -17,7 +17,7 @@
   let sponsors = [
     { src: "austral.jpg", alt: "austral engineering" },
     { src: "ca.jpg", alt: "chartered accountants" },
-    { src: "conoco.png", alt: "conocophillips" },
+    { src: "santos.png", alt: "santos" },
     { src: "gpa.jpg", alt: "gpa engineering" },
     { src: "wood&grieve.png", alt: "wood & grieve" },
     { src: "yara.png", alt: "yara" }
