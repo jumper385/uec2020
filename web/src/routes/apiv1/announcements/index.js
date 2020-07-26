@@ -4,8 +4,6 @@ import * as db from '../../mongoosehelpers';
 // HTTP FUNCTIONS
 export const get = async (req, res) => {
 
-	console.log(`get w/ ${JSON.stringify(req.params)}`);
-
 	let documents = await db.queryCollection(Announcement, req.params);
 	
 	res.status(200).json({
@@ -63,6 +61,7 @@ export const post = async (req, res) => {
 };
 
 export const put = async (req, res) => {
+	console.log(req.body)
 	let {verified, token} = req.auth
 	if(!verified) res.status(401).json('unauthorized')
 	console.log(`put request w/ ${JSON.stringify(req.body)}`);
@@ -73,11 +72,13 @@ export const put = async (req, res) => {
 };
 
 export const del = async (req, res, next) => {
-	console.log(req.headers, req.body)
-	let {verified, token} = req.auth
-	if(!verified) res.status(401).json('unauthorized')
-	console.log(`delete request w/ ${JSON.stringify(req.body)}`);
-	res.setHeader('Content-Type', 'application/json');
-	res.json(await db.deleteCollection(Announcement, req.body));
-	console.log(req.body);
+	
+	const { verified, token } = req.auth
+	if (!verified) res.status(401).json({error:true, message:'Unauthorized Access'})
+
+	if (res.json(Object.keys(req.body).length != 0)) {
+		console.log(req.body)
+		res.json(await db.deleteCollection(Announcement, req.body));
+	}
+
 };

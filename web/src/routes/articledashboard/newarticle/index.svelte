@@ -1,19 +1,17 @@
-<script context='module'>
-
-  export async function preload(page, session){
-    
-    const res = await this.fetch('/apiv1/auth/profile', {
-      method:'GET',
+<script context="module">
+  export async function preload(page, session) {
+    const res = await this.fetch("/apiv1/auth/profile", {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${session.token}`,
-      }
-    })
+      },
+    });
 
-    if (res.status == 401) this.redirect(302, '/login')
-    if (res.status == 500) this.error(res.status, "Internal Auth Error")
+    if (res.status == 401) this.redirect(302, "/login");
+    if (res.status == 500) this.error(res.status, "Internal Auth Error");
     if (res.status == 200) {
-      let credentials = await res.json()
-      return {credentials}
+      let credentials = await res.json();
+      return { credentials };
     }
   }
 </script>
@@ -25,19 +23,18 @@
   import { goto, stores } from "@sapper/app";
   const { session } = stores();
 
-  const exportAnnouncement = async e => {
-    
-    let request = await fetch('/apiv1/announcements', {
-      method:'POST', 
+  const exportAnnouncement = async (e) => {
+    let request = await fetch("/apiv1/announcements", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${$session.token}`,
       },
-      body:JSON.stringify(post)
-    })
+      body: JSON.stringify(post),
+    });
 
-    if (request.status == 200) goto('/sponsors')
-  }
+    if (request.status == 200) goto("/articledashboard");
+  };
 </script>
 
 <style>
@@ -81,7 +78,7 @@
     <h1 style="text-align:center">{post.title}</h1>
     <p style="text-align:center">by {post.company}</p>
     <p style="width:250pt; margin: 0 auto">TLDR: {post.summary}</p>
-    <br/>
+    <br />
     <div class="markdown-body" style="max-width:500pt; margin: 0 auto;">
       {@html marked(post.content || 'no content right now...')}
     </div>

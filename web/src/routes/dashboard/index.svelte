@@ -17,7 +17,6 @@
     if (res.status == 500) this.error(res.status, await res.message);
     if (res.status == 201) {
       credentials = await res.json();
-      console.log(credentials)
     }
 
     const getArticles = await this.fetch("apiv1/announcements", {
@@ -37,25 +36,14 @@
 
 <script>
   export let credentials;
-
-  const deleteAnnouncement = async () => {
-    console.log(query);
-
-    let deletion = await fetch("apiv1/announcements", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session.token}`,
-      },
-      body: JSON.stringify({
-        _id: "fdafdsadfa",
-      }),
-    });
-  };
 </script>
 
 <h2>Account Functions</h2>
 {#if credentials.role.includes('committee')}
-<p><a class='link' href='articledashboard/newarticle'>Create Announcement</a></p>
-<p><a class='link' href='articledashboard/editarticle'>Edit Articles</a></p>
+  <p>
+    <a class="link" href="articledashboard/newarticle">Create Announcement</a>
+  </p>
+  <p>
+    <a class="link" href="articledashboard">Article Dashboard</a>
+  </p>
 {/if}
