@@ -1,6 +1,6 @@
 <script context="module">
   export function preload({ params, query }) {
-    return this.fetch(`/apiv1/contacts`, {
+    return this.fetch(`/apiv1/committee`, {
       method:'GET'
     })
       .then(r => r.json())
@@ -64,18 +64,19 @@
   {#each positions as position}
     <div class="table-row">
       <p class="table-element role">
-        <span>{position.role}</span>
+        <span>{position.title}</span>
       </p>
 
       <p class="table-element name">
-        <span>{position.firstname} {position.lastname}</span>
+        <span>{position.firstName} {position.lastName}</span>
       </p>
 
       <p class="table-element email" style="text-transform:lowercase">
         <a href="mailto:{position.position}@uec.org.au">
-          <code>{position.email}</code>
+          <code>{position.position}@uec.org.au</code>
         </a>
       </p>
+
     </div>
   {/each}
 

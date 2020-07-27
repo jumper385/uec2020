@@ -12,7 +12,7 @@ export const get = async (req, res) => {
 		})
 
 		return {...contact, role:rolearray}
-	})
+	});
 	
-	res.json(contactInfo)
+	res.json(contactInfo);
 };
