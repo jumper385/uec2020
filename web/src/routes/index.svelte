@@ -65,7 +65,7 @@
     <h1>
       The
       <mark style="background:rgb(252,215,3)">
-        The University Engineers' Club
+        University Engineers' Club
       </mark>
       of the
       <mark style="background:#27348b; color:white">
