@@ -46,4 +46,7 @@
   <p>
     <a class="link" href="articledashboard">Article Dashboard</a>
   </p>
+  <p>
+    <a class="link" href="contact/contactEditor">Committee Dashboard</a>
+  </p>
 {/if}
